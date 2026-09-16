@@ -145,7 +145,7 @@
     <div class="glow-line"></div>
 
     <div class="photo-wrap">
-      <img src="group_silhouette_teaser.jpg" alt="TUIDE 7인 실루엣 단체 사진">
+      <img src="assets/group_silhouette_teaser_base64.txt" alt="TUIDE 7인 실루엣 단체 사진" id="teaser-img">
     </div>
     <div class="caption">Silhouette Concept · Coming Soon</div>
 
@@ -191,6 +191,14 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // load base64 image
+  fetch("assets/group_silhouette_teaser_base64.txt")
+    .then(r => r.text())
+    .then(b64 => {
+      document.getElementById("teaser-img").src = "data:image/jpeg;base64," + b64.trim();
+    })
+    .catch(err => console.error("image load failed", err));
 </script>
 </body>
 </html>
